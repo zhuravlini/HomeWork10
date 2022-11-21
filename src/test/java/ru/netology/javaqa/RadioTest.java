@@ -75,10 +75,10 @@ class RadioTest {
     @Test
     void volumeUpIfOverMax() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.volumeUp();
 
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -158,7 +158,7 @@ class RadioTest {
     public void shouldSetVolumeIfOverMax() {
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
 
         int expected = 0;
         int actual = radio.getCurrentVolume();
@@ -176,4 +176,41 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+
+    @Test
+    public void getCurrentStation() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(5);
+
+        int expected = 5;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void getCurrentStationIfOverMax() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(25);
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+    @Test
+    public void getCurrentStationIfUnderMin() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
 }
